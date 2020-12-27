@@ -1,7 +1,7 @@
 ---
 title: A toxonomy of eavesdropping attacks
 abbrev: MITM
-docname: draft-richardson-saag-onpath-attacker
+docname: draft-richardson-saag-onpath-attacker-00
 
 stand_alone: true
 
