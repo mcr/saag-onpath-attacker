@@ -1,13 +1,12 @@
-# ANIMA operational considerations for BRSKI Registrar
+# Taxonomy of Network Attacks
 
-The ANIMA WG Bootstrapping Remote Secure Key Infrastructure (BRSKI)
-protocol involves three parties: Pledge (device), Registrar and
-Manufacturer Authorized Signing Authority (MASA).
+The term "on-path" attack is vague as to whether or not such an attacker can drop traffic.
 
-This repository contains operational considerations for the Registrar
-function.  It is a candidate document for the ANIMA WG
-http://datatracker.ietf.org/wg/anima 
+This document aspires to be an IETF SAAG document, but it lives at:
 
+   https://datatracker.ietf.org/doc/draft-richardson-saag-onpath-attacker
+
+Please send comments to saag@ietf.org
 
 
 
