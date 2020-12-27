@@ -1,0 +1,159 @@
+---
+title: A toxonomy of eavesdropping attacks
+abbrev: MITM
+docname: draft-richardson-saag-onpath-attacker
+
+stand_alone: true
+
+ipr: trust200902
+area: Internet
+wg: anima Working Group
+kw: Internet-Draft
+cat: std
+
+pi:    # can use array (if all yes) or hash here
+  toc: yes
+  sortrefs:   # defaults to yes
+  symrefs: yes
+
+author:
+
+- ins: M. Richardson
+  name: Michael Richardson
+  org: Sandelman Software Works
+  email: mcr+ietf@sandelman.ca
+
+normative:
+  RFC4949:
+
+informative:
+  dolevyao:
+    target: "https://www.cs.huji.ac.il/~dolev/pubs/dolev-yao-ieee-01056650.pdf"
+    title: "On the Security of Public Key Protocols"
+    org:
+      ins: IEEE
+    date: 1983
+
+  quic:
+    target: "https://mailarchive.ietf.org/arch/msg/saag/wTtDYlRAADMmgqd6Vhm8rFybr_g/"
+    title: "QUIC terms for attacks"
+    org:
+      ins: IETF
+    date: 2020
+
+  malory:
+    target: "https://mailarchive.ietf.org/arch/msg/saag/b26jvEz4NRHSm-Xva6Lv5-L8QIA/"
+    title: "Man-in-the-Middle"
+    org:
+      ins: IETF
+    date: 2020
+
+  alliteration:
+    target: "https://mailarchive.ietf.org/arch/msg/saag/R0uevzT0Vz9uqqaxiu98GtK1rks/"
+    title: "Council of Attackers"
+    org:
+      ins: IETF
+    date: 2020
+
+contributor:
+  - name: Eric Rescola
+    email: ekr@rtfm.com
+  - name: Alan DeKok
+    email: aland@deployingradius.com
+  - name: Christian Huitema
+    email: huitema@huitema.net
+
+
+--- abstract
+
+The terms on-path attacker and Man-in-the-Middle Attack have been used in a variety of ways, sometimes interchangeably, and sometimes meaning different things.
+
+This document offers an update on terminology for network attacks.
+A consistent set of terminology is important in describing what kinds of attacks a particular protocol defends against, and which kinds the protocol does not.
+
+--- middle
+
+# Introduction
+
+A number of terms have been used to describe attacks against networks.
+
+In the [dolevyao] paper, the attacker is assumed to be able to:
+
+* view messages as they are transmitted
+* selectively delete messages
+* selectively insert or modify messages
+
+Some authors refer to such an attacker as an "on-path" attack [reference], or a "Man-in-the-Middle" attack [reference].
+In general, most authors form a clear consensus about this mode.
+Some authors are not happy with the gender of the attack ("Man") being assumed, and have sought other terminology.
+
+Where opinions diverge is what to call other forms of attack or eavesdropping.
+
+The term "passive attack" has been used in many cases to describe situations where the attacker can only observe messages, but can not intersept, modify or delete any messages.
+
+There are situations where an eavesdropper has a better network connection than the actual corresponds, and so while no messages can be removed, such an attacker may be able to beat the original packet in a race.
+
+The summary is that there are probably three variations of attack:
+
+1. An on-path attacker that can view, delete and modify messages.  This is the Dolev-Yao attack.
+2. An off-path attacker that can view messages and insert new messages.
+3. An off-path attacker that can only view messages.
+
+
+# Three proposals on terminology
+
+This document aspires to pick a single set of terms and explain them.
+
+## QUIC terms
+
+[quic] ended up with a different taxonomy:
+
+* On-path   [Dolev-Yao]
+
+* Off-path
+
+* Limited on-path (cannot delete)
+
+## Malory/Man in various places
+
+[malory] proposes:
+
+* man-in-the-middle   [Dolev-Yao]
+
+* man-on-the-side
+
+* man-in-the-rough
+
+Alternatively:
+
+* Malory-in-the-middle   [Dolev-Yao]
+
+* Malory-on-the-side
+
+* Malory-in-the-rough
+
+## Council of Attackers
+
+[alliteration] proposes the "the council of attackers"
+
+* malicious messenger [Dolev-Yao: who rewrites messages sent]
+
+* oppressive observer [who uses your information against you]
+
+# Security Considerations
+
+This document introduces a set of terminology that will be used in many Security Considerations sections.
+
+# IANA Considerations
+
+This document makes no IANA requests.
+
+# Acknowledgements
+
+The SAAG mailing list.
+
+# Changelog
+
+
+--- back
+
