@@ -48,6 +48,21 @@ informative:
       ins: IETF
     date: 2020
 
+  span:
+    target: "https://en.wikipedia.org/wiki/Port_mirroring"
+    title: "Port Mirroring"
+    org:
+      ins: Wikipedia
+    date: 2020
+
+  fibertap:
+    target: "https://en.wikipedia.org/wiki/Room_641A"
+    title: "Fiber Tap"
+    org:
+      ins: Wikipedia
+    date: 2020
+
+
   alliteration:
     target: "https://mailarchive.ietf.org/arch/msg/saag/R0uevzT0Vz9uqqaxiu98GtK1rks/"
     title: "Council of Attackers"
@@ -134,7 +149,7 @@ The attacker in is named "Mallory"
 ~~~~
 {::include alicebob.txt}
 ~~~~~~~~~~
-{: #alicebob title="Alice communicating with Bob"}
+{: #alicebobdiag title="Alice communicating with Bob"}
 
 
 
@@ -159,7 +174,56 @@ In this case Mallory can:
 * insert additional packets
 
 ## Second Kind of attack
+
+In this attack, the attacker is not involved with the forwarding of the packets.
+The attacker receives a copy of packets that are sent.
+This could be from, for instance, a mirror port or SPAN {{span}}.
+Alternatively, a copy of traffic may be obtained via passive (optical) tap {{fibertap}}.
+
+~~~~
+{::include secondkind.txt}
+~~~~~~~~~~
+{: #secondkind title="The second kind of attack"}
+
+In this case Mallory can:
+
+* view all packets
+
+
+## Second Kind of attack with bypass
+
+In some cases, Mallory may be able to send messages to Bob via another route which due to some factor will arrive at Bob prior to the original message from Alice.
+
+~~~~
+{::include secondkind-raced.txt}
+~~~~~~~~~~
+{: #racedkind title="The second kind of attack with bypass"}
+
+In that case Mallory can:
+
+* view all packets
+
+* insert additional/copied packets into the stream
+
+But Mallory will be unable to drop or modify the original packets.
+Bob however, may be unable to distinguish packets from Alice vs packets sent from Mallory that purport to be from Alice.
+
+
 ## Third Kind of attack
+
+The third kind of attack is one in which Mallory can not see any packets from Alice.
+This is usually what is meant by an "off-path" attack.
+Mallory can usually forge packets purporting to be from Alice, but can never see Alice's actual packets.
+
+~~~~
+{::include thirdkind.txt}
+~~~~~~~~~~
+{: #thirdkind title="The third kind of attack"}
+
+In this case Mallory can:
+
+* insert additional packets
+
 
 # Three proposals on terminology
 
