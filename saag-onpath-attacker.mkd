@@ -97,6 +97,8 @@ informative:
 contributor:
   - name: Eric Rescola
     email: ekr@rtfm.com
+  - name: Lou Berger
+    email: lberger@labn.net
   - name: Alan DeKok
     email: aland@deployingradius.com
   - name: Christian Huitema
