@@ -233,11 +233,11 @@ This document aspires to pick a single set of terms and explain them.
 
 [quic] ended up with a different taxonomy:
 
-* On-path   [Dolev-Yao]
-
-* Off-path
+* nn-path   [Dolev-Yao]
 
 * Limited on-path (cannot delete)
+
+* Off-path
 
 ## Malory/Man in various places
 
@@ -264,6 +264,9 @@ Alternatively:
 * malicious messenger [Dolev-Yao: who rewrites messages sent]
 
 * oppressive observer [who uses your information against you]
+
+* off-path attacker
+
 
 # Security Considerations
 
