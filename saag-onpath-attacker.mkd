@@ -1,13 +1,14 @@
 ---
 title: A taxonomy of eavesdropping attacks
 abbrev: MITM
+updates: 4949
 docname: draft-richardson-saag-onpath-attacker-01
 
 stand_alone: true
 
 ipr: trust200902
 area: Internet
-wg: anima Working Group
+wg: Security Area Working Group
 kw: Internet-Draft
 cat: std
 
@@ -129,7 +130,7 @@ In the [dolevyao] paper, the attacker is assumed to be able to:
 * selectively insert or modify messages
 
 Some authors refer to such an attacker as an "on-path" attacker [reference], or a "Man-in-the-Middle" [reference].
-This type of attack is also refered to as a "monster-in-the-middle" attack. 
+This type of attack is also refered to as a "monster-in-the-middle" attack.
 
 Despite a broad consensus on what is meant by a MITM attack, there is less agreement on the how to describe its variants.
 The term "passive attacker" has been used in many cases to describe situations where the attacker can only observe messages, but can not intercept, modify or delete any messages.
@@ -183,6 +184,7 @@ In this attack, the attacker is not involved with the forwarding of the packets.
 The attacker receives a copy of packets that are sent.
 This could be from, for instance, a mirror port or SPAN {{span}}.
 Alternatively, a copy of traffic may be obtained via passive (optical) tap {{fibertap}}.
+This kind of attack is often associated with Pervasive Monitoring {{?RFC7258}}.
 
 ~~~~
 {::include secondkind.txt}
@@ -237,7 +239,7 @@ This document aspires to pick a single set of terms and explain them.
 
 [quic] ended up with a different taxonomy:
 
-* nn-path   [Dolev-Yao]
+* on-path   [Dolev-Yao]
 
 * Limited on-path (cannot delete)
 
