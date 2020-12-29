@@ -1,7 +1,7 @@
 ---
 title: A toxonomy of eavesdropping attacks
 abbrev: MITM
-docname: draft-richardson-saag-onpath-attacker-00
+docname: draft-richardson-saag-onpath-attacker-01
 
 stand_alone: true
 
@@ -55,6 +55,30 @@ informative:
       ins: IETF
     date: 2020
 
+  alicebob:
+    target: "https://en.wikipedia.org/wiki/Alice_and_Bob"
+    title: "Alice and Bob"
+    org:
+      ins: Wikipedia
+    date: 2020
+
+  digisign:
+    title: "A method for obtaining digital signatures and public-key cryptosystems"
+    target: "https://doi.org/10.1145/359340.359342"
+    author:
+      -
+        name: "R. L. Rivest"
+        org: "MIT Lab. for Computer Science and Department of Mathematics, Cambridge, MA"
+      -
+        name: "A. Shamir"
+        org: "MIT Lab. for Computer Science and Department of Mathematics, Cambridge, MA"
+      -
+        name: "L. Adleman"
+        org: "MIT Lab. for Computer Science and Department of Mathematics, Cambridge, MA"
+    org:
+      ins: "Communications of the ACM"
+    date: "February 1978"
+
 contributor:
   - name: Eric Rescola
     email: ekr@rtfm.com
@@ -99,6 +123,43 @@ The summary is that there are probably three variations of attack:
 2. An off-path attacker that can view messages and insert new messages.
 3. An off-path attacker that can only view messages.
 
+# Three kinds of attack
+
+The attacks are numbered in this section as no consensus on naming the attacks yet.
+In the diagrams below, the sender is named "Alice", and the recipient is named "Bob",
+as is typical in many cryptographic protocols {{alicebob}}, as first introduced by {{digisign}}.
+
+The attacker in is named "Mallory"
+
+~~~~
+{::include alicebob.txt}
+~~~~~~~~~~
+{: #alicebob title="Alice communicating with Bob"}
+
+
+
+## First Kind of attack
+
+In this attack, the attacker is involved with the forwarding of the packets.
+A firewall or network router is ideally placed for this attack.
+
+~~~~
+{::include firstkind.txt}
+~~~~~~~~~~
+{: #firstkind title="The first kind of attack"}
+
+In this case Mallory can:
+
+* view all packets
+
+* selectively forward or drop any packet
+
+* modify any packets that is forwarded
+
+* insert additional packets
+
+## Second Kind of attack
+## Third Kind of attack
 
 # Three proposals on terminology
 
