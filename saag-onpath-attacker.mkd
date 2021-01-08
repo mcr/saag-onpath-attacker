@@ -1,5 +1,5 @@
 ---
-title: A toxonomy of eavesdropping attacks
+title: A taxonomy of eavesdropping attacks
 abbrev: MITM
 docname: draft-richardson-saag-onpath-attacker-01
 
@@ -23,6 +23,10 @@ author:
   org: Sandelman Software Works
   email: mcr+ietf@sandelman.ca
 
+- ins: J. Hoyland
+  name: Jonathan Hoyland
+  org: Cloudflare Ltd.
+  email: jhoyland@cloudflare.com
 normative:
   RFC4949:
 
@@ -124,17 +128,15 @@ In the [dolevyao] paper, the attacker is assumed to be able to:
 * selectively delete messages
 * selectively insert or modify messages
 
-Some authors refer to such an attacker as an "on-path" attack [reference], or a "Man-in-the-Middle" attack [reference].
-In general, most authors form a clear consensus about this mode.
-Some authors are not happy with the gender of the attack ("Man") being assumed, and have sought other terminology.
+Some authors refer to such an attacker as an "on-path" attacker [reference], or a "Man-in-the-Middle" [reference].
+This type of attack is also refered to as a "monster-in-the-middle" attack. 
 
-Where opinions diverge is what to call other forms of attack or eavesdropping.
+Despite a broad consensus on what is meant by a MITM attack, there is less agreement on the how to describe its variants.
+The term "passive attacker" has been used in many cases to describe situations where the attacker can only observe messages, but can not intercept, modify or delete any messages.
 
-The term "passive attack" has been used in many cases to describe situations where the attacker can only observe messages, but can not intersept, modify or delete any messages.
+Another variant is the case where an eavesdropper is not on the network path between the actual correspondants, and thus cannot drop messages, they may be able to inject packets faster than the correspondants, and thus beat legitimate packets in a race.
 
-There are situations where an eavesdropper has a better network connection than the actual corresponds, and so while no messages can be removed, such an attacker may be able to beat the original packet in a race.
-
-The summary is that there are probably three variations of attack:
+As summarised, there are three broad  variations of the MITM attacker:
 
 1. An on-path attacker that can view, delete and modify messages.  This is the Dolev-Yao attack.
 2. An off-path attacker that can view messages and insert new messages.
@@ -146,7 +148,7 @@ The attacks are numbered in this section as no consensus on naming the attacks y
 In the diagrams below, the sender is named "Alice", and the recipient is named "Bob",
 as is typical in many cryptographic protocols {{alicebob}}, as first introduced by {{digisign}}.
 
-The attacker in is named "Mallory"
+The attacker is named "Mallory"
 
 ~~~~
 {::include alicebob.txt}
