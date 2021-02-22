@@ -2,7 +2,7 @@
 title: A taxonomy of eavesdropping attacks
 abbrev: MITM
 updates: 4949
-docname: draft-richardson-saag-onpath-attacker-01
+docname: draft-richardson-saag-onpath-attacker-02
 
 stand_alone: true
 
