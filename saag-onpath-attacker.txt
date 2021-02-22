@@ -9,7 +9,7 @@ Expires: 12 July 2021                                    Cloudflare Ltd.
                                                           8 January 2021
 
 
-                  A toxonomy of eavesdropping attacks
+                  A taxonomy of eavesdropping attacks
                 draft-richardson-saag-onpath-attacker-01
 
 Abstract
