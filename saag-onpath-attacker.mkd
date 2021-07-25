@@ -7,10 +7,10 @@ docname: draft-richardson-saag-onpath-attacker-02
 stand_alone: true
 
 ipr: trust200902
-area: Internet
+area: Security
 wg: Security Area Working Group
 kw: Internet-Draft
-cat: std
+cat: info
 
 pi:    # can use array (if all yes) or hash here
   toc: yes
