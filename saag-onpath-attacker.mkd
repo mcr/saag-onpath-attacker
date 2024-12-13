@@ -112,10 +112,12 @@ contributor:
 
 --- abstract
 
-The terms on-path attacker and Man-in-the-Middle Attack have been used in a variety of ways, sometimes interchangeably, and sometimes meaning different things.
+The terms on-path attacker and MITM Attack have been used in a variety of ways, sometimes interchangeably, and sometimes meaning different things.
 
-This document offers an update on terminology for network attacks.
-A consistent set of terminology is important in describing what kinds of attacks a particular protocol defends against, and which kinds the protocol does not.
+Increasingly people have become uncomfortable with the gendered term "Man" in the middle and have sought alternatives.
+
+This document offers an update on terminology for network attacks, retaining some acronyms terms while redefining the expansion, and clarifying the different kinds of attacks.
+Consistent terminology is important in describing what kinds of attacks a particular protocol defends against, and which kinds the protocol does not.
 
 --- middle
 
@@ -130,7 +132,6 @@ In the [dolevyao] paper, the attacker is assumed to be able to:
 * selectively insert or modify messages
 
 Some authors refer to such an attacker as an "on-path" attacker [reference], or a "Man-in-the-Middle" [reference].
-This type of attack is also refered to as a "monster-in-the-middle" attack.
 
 Despite a broad consensus on what is meant by a MITM attack, there is less agreement on the how to describe its variants.
 The term "passive attacker" has been used in many cases to describe situations where the attacker can only observe messages, but can not intercept, modify or delete any messages.
@@ -149,7 +150,9 @@ The attacks are numbered in this section as no consensus on naming the attacks y
 In the diagrams below, the sender is named "Alice", and the recipient is named "Bob",
 as is typical in many cryptographic protocols {{alicebob}}, as first introduced by {{digisign}}.
 
-The attacker is named "Mallory"
+Alice and Bob were named as expansions of "A" and "B", which would otherwise be very abstract concepts of the two end points.
+
+The attacker has historically been named "Mallory", but this document proposes that the expansion be named "Meddler"
 
 ~~~~ aasvg
 {::include alicebob.txt}
@@ -157,8 +160,7 @@ The attacker is named "Mallory"
 {: #alicebobdiag title="Alice communicating with Bob"}
 
 
-
-## First Kind of attack
+## Active On-Path Attacker, or Meddler in the Middle (MITM)
 
 In this attack, the attacker is involved with the forwarding of the packets.
 A firewall or network router is ideally placed for this attack.
@@ -168,7 +170,7 @@ A firewall or network router is ideally placed for this attack.
 ~~~~~~~~~~
 {: #firstkind title="The first kind of attack"}
 
-In this case Mallory can:
+In this case the Meddler can:
 
 * view all packets
 
@@ -178,10 +180,10 @@ In this case Mallory can:
 
 * insert additional packets
 
-## Second Kind of attack
+## Passive On-Path attack
 
 In this attack, the attacker is not involved with the forwarding of the packets.
-The attacker receives a copy of packets that are sent.
+The attacker receives a copy of packets that are sent along the path.
 This could be from, for instance, a mirror port or SPAN {{span}}.
 Alternatively, a copy of traffic may be obtained via passive (optical) tap {{fibertap}}.
 This kind of attack is often associated with Pervasive Monitoring {{?RFC7258}}.
@@ -189,90 +191,65 @@ This kind of attack is often associated with Pervasive Monitoring {{?RFC7258}}.
 ~~~~ aasvg
 {::include secondkind.txt}
 ~~~~~~~~~~
-{: #secondkind title="The second kind of attack"}
+{: #secondkind title="Passive On-Path attack"}
 
-In this case Mallory can:
+In this the meddler can:
 
 * view all packets
 
+Note that they have no way to inject new packets, and this attack may occur seconds to decades after the data was exchanged.
 
-## Second Kind of attack with bypass
+## Passive On-Path attack with bypass
 
-In some cases, Mallory may be able to send messages to Bob via another route which due to some factor will arrive at Bob prior to the original message from Alice.
+In some cases, the Meddler is be able to send messages to Bob via another route.
+Due to some other factor (such as shorter or higher cost routing), these messages arrive at Bob prior to the original message from Alice.
 
 ~~~~ aasvg
 {::include secondkind-raced.txt}
 ~~~~~~~~~~
-{: #racedkind title="The second kind of attack with bypass"}
+{: #racedkind title="Passive On-Path attack with bypass"}
 
-In that case Mallory can:
+In that the Meddler can:
 
 * view all packets
 
 * insert additional/copied packets into the stream
 
-But Mallory will be unable to drop or modify the original packets.
-Bob however, may be unable to distinguish packets from Alice vs packets sent from Mallory that purport to be from Alice.
+But the Meddler is unable to drop or modify the original packets.
+Bob however, may be unable to distinguish packets from Alice vs packets sent from the Meddler that purport to be from Alice.
+
+To be effective or useful, this type of attack needs to occur in real time.
 
 
-## Third Kind of attack
+## Passive Off-path attacker
 
-The third kind of attack is one in which Mallory can not see any packets from Alice.
+The third kind of attack is one in which the Meddler can not see any packets from Alice.
 This is usually what is meant by an "off-path" attack.
-Mallory can usually forge packets purporting to be from Alice, but can never see Alice's actual packets.
+The meddler can forge packets purporting to be from Alice, but can never see Alice's actual packets.
 
 ~~~~ aasvg
 {::include thirdkind.txt}
 ~~~~~~~~~~
-{: #thirdkind title="The third kind of attack"}
+{: #thirdkind title="Passive Off-path attacker"}
 
-In this case Mallory can:
+In this the Meddler can:
 
 * insert additional packets
 
+# Existing uses of the terms
 
-# Three proposals on terminology
+## IETF QUIC terms
 
-This document aspires to pick a single set of terms and explain them.
+[quic] ended up the following taxonomy:
 
-## QUIC terms
+on-path:
+: [Dolev-Yao] MITM, Active On-Path attacker
 
-[quic] ended up with a different taxonomy:
+Limited on-path (cannot delete):
+: Active Off-Path attacker
 
-* on-path   [Dolev-Yao]
-
-* Limited on-path (cannot delete)
-
-* Off-path
-
-## Malory/Man in various places
-
-[malory] proposes:
-
-* man-in-the-middle   [Dolev-Yao]
-
-* man-on-the-side
-
-* man-in-the-rough
-
-Alternatively:
-
-* Malory-in-the-middle   [Dolev-Yao]
-
-* Malory-on-the-side
-
-* Malory-in-the-rough
-
-## Council of Attackers
-
-[alliteration] proposes the "the council of attackers"
-
-* malicious messenger [Dolev-Yao: who rewrites messages sent]
-
-* oppressive observer [who uses your information against you]
-
-* off-path attacker
-
+Off-path:
+: Passive Off-Path attacker
 
 # Security Considerations
 
@@ -291,3 +268,26 @@ The SAAG mailing list.
 
 --- back
 
+# Monster in the Middle
+
+As a special case for the MITM, if the Meddler steals cookies (whether they are HTTP Cookies, IKE nonces, or TCP SYN Cookies), then this kind of attack is a Monster in The Middle.
+This is otherwise known as a: nom-nom-nom-nom attack.
+
+~~~~ aasvg
+              .---. .---.
+             :     : o   :    me want cookie!
+         _..-:   o :     :-.._    /
+     .-''  '  `---' `---' "   ``-.
+   .'   "   '  "  .    "  . '  "  `.
+  :   '.---.,,.,...,.,.,.,..---.  ' ;
+  `. " `.                     .' " .'
+   `.  '`.                   .' ' .'
+    `.    `-._           _.-' "  .'  .----.
+      `. "    '"--...--"'  . ' .'  .'  o   `.
+      .'`-._'    " .     " _.-'`. :       o  :
+jgs .'      ```--.....--'''    ' `:_ o       :
+  .'    "     '         "     "   ; `.;";";";'
+ ;         '       "       '     . ; .' ; ; ;
+;     '         '       '   "    .'      .-'
+'  "     "   '      "           "    _.-'
+~~~~
