@@ -6,6 +6,9 @@ ${DRAFT}-${VERSION}.txt: ${DRAFT}.txt
 	cp ${DRAFT}.txt ${DRAFT}-${VERSION}.txt
 	: git add ${DRAFT}-${VERSION}.txt ${DRAFT}.txt
 
+%.txt: %.asciio
+	asciio_to_text >$@ $?
+
 %.xml: %.mkd ${EXAMPLES}
 	kramdown-rfc2629 ${DRAFT}.mkd >${DRAFT}.xml
 	unset DISPLAY; XML_LIBRARY=$(XML_LIBRARY):./src xml2rfc --v2v3 ${DRAFT}.xml
@@ -27,3 +30,4 @@ clean:
 	-rm -f ${DRAFT}.xml
 
 .PRECIOUS: ${DRAFT}.xml
+.SUFFIXES: .asciio .txt .xml
