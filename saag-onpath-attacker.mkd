@@ -99,6 +99,11 @@ informative:
       ins: "Communications of the ACM"
     date: "February 1978"
 
+venue:
+  group: saag
+  mail: saag@ietf.org
+  github: mcr/saag-onpath-attacker
+
 contributor:
   - name: Eric Rescola
     email: ekr@rtfm.com
@@ -168,7 +173,7 @@ A firewall or network router is ideally placed for this attack.
 ~~~~ aasvg
 {::include firstkind.txt}
 ~~~~~~~~~~
-{: #firstkind title="The first kind of attack"}
+{: #firstkind title="On Path Attacker"}
 
 In this case the Meddler can:
 
